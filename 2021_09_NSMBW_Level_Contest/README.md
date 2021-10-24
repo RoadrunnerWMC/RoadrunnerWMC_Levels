@@ -18,4 +18,4 @@ If you'd like the exact zip file I submitted to the contest, you can find it in 
 
 ## Licenses
 
-Everything apart from the "reverse_engineering_documentation" subfolder is licensed under GNU GPL v3. The aforementioned subfolder is either placed in the public domain or licensed under the MIT license, at your option.
+The files in this exact immediate directory (not in a subdirectory) are licensed under GNU GPL v3. Everything in subfolders apart from the "reverse_engineering_documentation" subfolder is also licensed under GNU GPL v3. See the readme in the aforementioned subfolder for more details about that folder's licensing.
