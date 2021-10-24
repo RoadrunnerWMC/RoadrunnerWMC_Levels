@@ -14,7 +14,7 @@ ADDRESS_MAP_TXT = Path('address-map.txt')
 
 LIBS_DIR = Path('libs')
 
-OUTPUT_DIR = Path('bin')
+OUTPUT_DIR = Path('dist')
 
 # Source files
 CPP_FILES = [Path('contest_001_indoors')]

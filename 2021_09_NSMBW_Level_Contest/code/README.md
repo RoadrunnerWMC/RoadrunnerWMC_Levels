@@ -13,9 +13,12 @@ The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (als
 * If using an OS other than Windows, install Wine (since CodeWarrior is an EXE).
 * Clone the Kamek repo in the current directory (so that there's a "Kamek" subdirectory within this one).
 * Apply the PRs listed above if they're not already merged.
-* Obtain CodeWarrior as described in the Kamek documentation, and put it in a "cw" directory of the Kamek repo, which is the convention used by Kamek's included examples.
+* Obtain CodeWarrior as described in the Kamek documentation.
+    * Put it in a "cw" directory of the Kamek repo, which is the convention used by Kamek's included examples.
 * Build Kamek (see its own documentation for details).
-* Open `Kamek/k_stdlib/kamek.h` and comment out these two lines near the bottom:
+* Build the Kamek loader (again, see its own documentation for details).
+    * "loader.bin" and "loader.xml" should now exist in Kamek's "loader" directory.
+* Open "Kamek/k_stdlib/kamek.h" and comment out these two lines near the bottom:
 
 ```
 #include "base/c_stdlib.h"
@@ -24,9 +27,18 @@ The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (als
 
 ## Building
 
+First, prepare the loader.bin and Riivolution XML files by running
+
+    python3 prepare_loader.py
+
+This will create a `dist_loader` directory containing those two files. You only
+need to run this once, unless you modify the loader itself.
+
+To build the actual code, run
+
     python3 build_code.py
 
-Output is placed in the `output` directory.
+Output is placed in the `dist` directory.
 
 ## New sprites
 

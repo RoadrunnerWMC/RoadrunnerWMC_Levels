@@ -1,0 +1,20 @@
+<wiidisc version="1" shiftfiles="true" root="/contest_level" log="true">
+    <id game="SMN">
+        <region type="P"/>
+        <region type="E"/>
+        <region type="J"/>
+    </id>
+    <options>
+        <section name="Contest Level">
+            <option name="Contest Level" id="contest_level" default="1">
+                <choice name="Enabled"><patch id="contest_level"/></choice>
+            </option>
+        </section>
+    </options>
+    <patch id="contest_level">
+        <folder external="Code" disc="/Code" create="true" />
+        <folder external="Object" disc="/Object" create="true" />
+        <folder external="Stage" disc="/Stage" create="true" />
+{{MEMORY_PATCHES}}
+    </patch>
+</wiidisc>

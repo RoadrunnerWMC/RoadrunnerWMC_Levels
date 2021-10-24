@@ -1,3 +1,4 @@
 Kamek
-bin
+dist
+dist_loader
 *.o
