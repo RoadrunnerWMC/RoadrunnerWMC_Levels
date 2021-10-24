@@ -1,6 +1,6 @@
 # RoadrunnerWMC's Sept. 2021 NSMBW Level Contest Entry
 
-**NOTE:** This is the "spoiler-free" readme. If/when you're comfortable with spoilers for this level, [you can see see the rest of the readme here](README_spoilers.md).
+**NOTE:** This is the "spoiler-free" readme. If/when you're comfortable with spoilers for this level, [you can see see the rest of the readme here](README_spoilers.md). Also, sub-directories of this folder include their own readmes, in which spoilers are fair game -- you've been warned.
 
 ## Introduction
 
