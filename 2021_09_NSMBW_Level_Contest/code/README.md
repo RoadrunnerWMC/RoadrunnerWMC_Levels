@@ -1,14 +1,12 @@
 # Custom Code for "Indoors"
 
-TODO: SUBMIT PR FOR THE AR CODE PATCH AND ADD PR NUMBER HERE
-
 This level has much more custom code than I originally planned on writing. But most of it is custom sprites and new settings for existing sprites, which can be reused in other levels -- so it was definitely worth it! It also served as a catalyst for some much-needed bugfixes and improvements to Kamek itself, since version 2.0 unfortunately hasn't seen very much real-world usage yet despite being six years old now.
 
 All of the code is in a single massive file because the current version of Kamek (at time of writing) has a bug that makes it fail during linking if you have hooks in more than one cpp file.
 
 ## Setup
 
-The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (also known as "C# Kamek", as Kamek 1.0 was written in Python). Pull requests 6, 7 and [insert number here] need to be applied.
+The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (also known as "C# Kamek", as Kamek 1.0 was written in Python). Pull requests 6 and 7 need to be applied.
 
 * If using an OS other than Windows, install Wine (since CodeWarrior is an EXE).
 * Clone the Kamek repo in the current directory (so that there's a "Kamek" subdirectory within this one).
