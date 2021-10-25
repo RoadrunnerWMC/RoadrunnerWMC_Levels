@@ -2,8 +2,6 @@
 
 This level has much more custom code than I originally planned on writing. But most of it is custom sprites and new settings for existing sprites, which can be reused in other levels -- so it was definitely worth it! It also served as a catalyst for some much-needed bugfixes and improvements to Kamek itself, since version 2.0 unfortunately hasn't seen very much real-world usage yet despite being six years old now.
 
-All of the code is in a single massive file because the current version of Kamek (at time of writing) has a bug that makes it fail during linking if you have hooks in more than one cpp file.
-
 ## Setup
 
 The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (also known as "C# Kamek", as Kamek 1.0 was written in Python). Pull requests 6 and 7 need to be applied.
@@ -14,6 +12,7 @@ The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (als
 * Obtain CodeWarrior as described in the Kamek documentation.
     * Put it in a "cw" directory of the Kamek repo, which is the convention used by Kamek's included examples.
 * Build Kamek (see its own documentation for details).
+* Make a small change to the Kamek loader: in "nsmbw.cpp", replace `"/engine.%c%d.bin"` with `"/Code/%c%d.bin"`.
 * Build the Kamek loader (again, see its own documentation for details).
     * "loader.bin" and "loader.xml" should now exist in Kamek's "loader" directory.
 * Open "Kamek/k_stdlib/kamek.h" and comment out these two lines near the bottom:

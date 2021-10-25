@@ -20,6 +20,7 @@ from pathlib import Path
 import subprocess
 import sys
 
+
 # Paths to things
 KAMEK_ROOT_DIR = Path('Kamek')
 
@@ -30,12 +31,14 @@ KSTDLIB_DIR = KAMEK_ROOT_DIR / 'k_stdlib'
 EXTERNALS_TXT = Path('externals-nsmbw-P1.txt')
 ADDRESS_MAP_TXT = Path('address-map.txt')
 
-LIBS_DIR = Path('libs')
+SRC_DIR = Path('src')
+INCLUDE_DIR = Path('include')
+LIBS_DIR = INCLUDE_DIR / 'libs'
 
 OUTPUT_DIR = Path('dist')
 
 # Source files
-CPP_FILES = [Path('contest_001_indoors')]
+CPP_FILES = list(SRC_DIR.glob('**/*.cpp'))
 
 # CLI args
 OUTPUT_DEBUG = ('--debug' in sys.argv)
@@ -55,7 +58,7 @@ CFLAGS = [
     '-I-',
     '-i', str(KSTDLIB_DIR),
     '-i', str(LIBS_DIR),
-    '-i', '.',
+    '-i', str(INCLUDE_DIR),
     '-Cpp_exceptions', 'off',
     '-enum', 'int',
     '-O4,s',
@@ -66,12 +69,12 @@ CFLAGS = [
     '-sdata2', '0',
     '-RTTI', 'off']
 
-for i in CPP_FILES:
+for fp in CPP_FILES:
     if OUTPUT_DEBUG:
-        print(f'(Debug) Preprocessing {i}.cpp...')
-        subprocess.run(CC + CFLAGS + ['-P', '-c', '-o', f'{i}_preprocessed.cpp', f'{i}.cpp'])
-    print(f'Compiling {i}.cpp...')
-    subprocess.run(CC + CFLAGS + ['-c', '-o', f'{i}.o', f'{i}.cpp'])
+        print(f'(Debug) Preprocessing {fp}...')
+        subprocess.run(CC + CFLAGS + ['-P', '-c', '-o', str(fp.parent / (fp.stem + '_preprocessed.txt')), str(fp)])
+    print(f'Compiling {fp}...')
+    subprocess.run(CC + CFLAGS + ['-c', '-o', str(fp.with_suffix('.o')), str(fp)])
 
 
 print('Linking...')
