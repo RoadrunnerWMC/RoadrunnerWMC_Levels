@@ -4,11 +4,10 @@ This level has much more custom code than I originally planned on writing. But m
 
 ## Setup
 
-The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (also known as "C# Kamek", as Kamek 1.0 was written in Python). Pull requests 6 and 7 need to be applied.
+The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (also known as "C# Kamek", as Kamek 1.0 was written in Python).
 
 * If using an OS other than Windows, install Wine (since CodeWarrior is an EXE).
 * Clone the Kamek repo in the current directory (so that there's a "Kamek" subdirectory within this one).
-* Apply the PRs listed above if they're not already merged.
 * Obtain CodeWarrior as described in the Kamek documentation.
     * Put it in a "cw" directory of the Kamek repo, which is the convention used by Kamek's included examples.
 * Build Kamek (see its own documentation for details).
