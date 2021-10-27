@@ -4,6 +4,10 @@ This is kind of a joke level. The contest theme was "indoors," so naturally, I m
 
 There's also a smaller secondary joke: the level subverts the intended theme by using outdoor backgrounds, because this was actually technically allowed according to the rules. The rules just stated that "at least 50% of the level must take place inside," and defined "inside" to mean "any level with a roof or ceiling;" there was no mention of backgrounds at all.
 
+Click below to watch a video of the level on YouTube:
+
+[![YouTube video](https://img.youtube.com/vi/MoUXKC54R_0/0.jpg)](https://www.youtube.com/watch?v=MoUXKC54R_0)
+
 ## Credits (alphabetical order)
 
 * [Chickensaver (Bahlph#0486)](https://github.com/Bahlph) -- debugging help
