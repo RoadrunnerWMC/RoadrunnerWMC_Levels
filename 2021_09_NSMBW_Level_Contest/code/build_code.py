@@ -25,7 +25,7 @@ import sys
 KAMEK_ROOT_DIR = Path('Kamek')
 
 CODEWARRIOR_EXE = KAMEK_ROOT_DIR / 'cw' / 'mwcceppc.exe'
-KAMEK_EXE = KAMEK_ROOT_DIR / 'Kamek' / 'bin' / 'Debug' / 'Kamek.exe'
+KAMEK_EXE = KAMEK_ROOT_DIR / 'Kamek' / 'bin' / 'Debug' / 'net6.0' / 'Kamek'
 KSTDLIB_DIR = KAMEK_ROOT_DIR / 'k_stdlib'
 
 EXTERNALS_TXT = Path('externals-nsmbw-P1.txt')
