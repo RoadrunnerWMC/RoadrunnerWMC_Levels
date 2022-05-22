@@ -11,7 +11,6 @@ The custom code is built with [Kamek 2.0](https://github.com/Treeki/Kamek/) (als
 * Obtain CodeWarrior as described in the Kamek documentation.
     * Put it in a "cw" directory of the Kamek repo, which is the convention used by Kamek's included examples.
 * Build Kamek (see its own documentation for details).
-* Make a small change to the Kamek loader: in "Kamek/loader/nsmbw.cpp", replace `"/engine.%c%d.bin"` with `"/Code/%c%d.bin"`.
 * Build the Kamek loader (again, see its own documentation for details).
     * "loader.bin" and "loader.xml" should now exist in Kamek's "loader" directory.
 * Open "Kamek/k_stdlib/kamek.h" and comment out these two lines near the bottom:
