@@ -250,7 +250,6 @@ Custom macros to make it easy to replace an existing sprite with a custom one. Y
 
 ### Assembly helpers
 
-* Custom assembly macros `ASM_DUMP_CONTEXT_TO_STACK` and `ASM_RESTORE_CONTEXT_FROM_STACK`, to help with safely hooking new code at a location without accidentally modifying processor state.
 * Custom assembly macro `BACKDOOR_BLR`, which `build_code.py` detects in the output files and replaces with a `blr` instruction. This is useful for working around Kamek safeguards against using `blr` in certain contexts where it thinks you shouldn't be (but you can safely if you know what you're doing).
 
 ### Other helpers

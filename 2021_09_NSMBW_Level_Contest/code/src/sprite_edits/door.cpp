@@ -32,16 +32,10 @@ kmCallDefCpp(0x8002b308, bool, dStageActor_c *this_) {
         return daEnDoor_c_checkOpenOk(this_);
 };
 
-// settings & 0x0f000000: z-order (higher values = farther behind)
-void Door_SetZOrder(dStageActor_c *this_) {
+// New setting in nybble 5: z-order (higher values = farther behind)
+kmSafeBranchDefCpp(0x8002af10) {
+    kmUseReg(r31, this_, dStageActor_c *);
+
     int zorder_int = (this_->settings >> 24) & 0xf;
     this_->pos.z = 32.0f - 100.0f * zorder_int;
-};
-kmBranchDefAsm(0x8002af10, 0x8002af14) {
-    nofralloc  // don't auto-generate a prologue
-    ASM_DUMP_CONTEXT_TO_STACK
-    mr r3, r31
-    bl Door_SetZOrder
-    ASM_RESTORE_CONTEXT_FROM_STACK
-    blr  // needed because we used nofralloc at the start -- also, Kamek will replace this with a branch to the target return address
 };

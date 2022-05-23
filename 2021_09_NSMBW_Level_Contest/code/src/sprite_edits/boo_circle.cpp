@@ -23,16 +23,9 @@
 // Boo circle (spr 323) hacks
 
 
-void BooCircle_SetInitialRotationAngle(dStageActor_c *this_) {
-    // settings & 0xf0000000: initial rotation angle
-    *((s16*)((u32)this_ + 0x448)) = (this_->settings >> 28) << 12;
-};
+// New setting in nybble 5: initial rotation angle
+kmSafeBranchDefCpp(0x8089ff60, stw r8, 0x3d0(r3)) {
+    kmUseReg(r3, this_, dStageActor_c *);
 
-kmCallDefAsm(0x8089ff60) {
-    nofralloc  // don't auto-generate a prologue
-    stw r8, 0x3d0(r3)  // (original instruction)
-    ASM_DUMP_CONTEXT_TO_STACK
-    bl BooCircle_SetInitialRotationAngle
-    ASM_RESTORE_CONTEXT_FROM_STACK
-    blr  // needed because we used nofralloc at the start
+    *((s16*)((u32)this_ + 0x448)) = (this_->settings >> 28) << 12;
 };

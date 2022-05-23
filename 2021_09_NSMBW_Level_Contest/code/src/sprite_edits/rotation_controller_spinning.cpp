@@ -38,17 +38,17 @@ bool RotationController_IsActive(dStageActor_c *this_) {
 
 kmBranchDefAsm(0x80874968, 0x8087496c) {
     nofralloc  // don't auto-generate a prologue
-    ASM_DUMP_CONTEXT_TO_STACK
+    kmSaveContext
     mr r3, r31
     bl RotationController_IsActive
     cmpwi r3, 1
     bne _IsntActive
 _IsActive:
-    ASM_RESTORE_CONTEXT_FROM_STACK
+    kmRestoreContext
     bctrl  // (original instruction)
     b _End
 _IsntActive:
-    ASM_RESTORE_CONTEXT_FROM_STACK
+    kmRestoreContext
 _End:
     blr  // needed because we used nofralloc at the start -- also, Kamek will replace this with a branch to the target return address
 };

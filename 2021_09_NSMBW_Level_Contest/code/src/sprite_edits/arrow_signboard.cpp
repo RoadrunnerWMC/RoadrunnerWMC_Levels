@@ -23,17 +23,9 @@
 // Arrow Signboard (spr 310) hacks
 
 
-void ArrowSignboard_SetRotation(dStageActor_c *this_) {
-    // settings & 0xffff0000: rotation angle
-    this_->rot.z = this_->settings >> 16;
-};
+// New setting in nybbles 5-8: rotation angle
+kmSafeBranchDefCpp(0x8081c950, lwz r31, 0x1c(sp)) {
+    kmUseReg(r31, this_, dStageActor_c *);
 
-kmBranchDefAsm(0x8081c950, 0x8081c954) {
-    nofralloc  // don't auto-generate a prologue
-    ASM_DUMP_CONTEXT_TO_STACK
-    mr r3, r31
-    bl ArrowSignboard_SetRotation
-    ASM_RESTORE_CONTEXT_FROM_STACK
-    lwz r31, 0x1c(sp)  // (original instruction)
-    blr  // needed because we used nofralloc at the start
+    this_->rot.z = this_->settings >> 16;
 };

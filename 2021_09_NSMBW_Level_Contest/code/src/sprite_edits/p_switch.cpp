@@ -42,12 +42,12 @@ kmBranchDefAsm(0x80a197b4, 0x80a197b8) {
     mfspr r0, lr      // (original instructions)
     stw r0, 0x24(sp)  // (^)
 
-    ASM_DUMP_CONTEXT_TO_STACK
+    kmSaveContext
     bl PSwitch_ShouldSpawn
     cmpwi r3, 1
     beq _ShouldSpawn
 _ShouldntSpawn:
-    ASM_RESTORE_CONTEXT_FROM_STACK
+    kmRestoreContext
     // return 2 ("delete me pls")
     li r3, ONCREATE_RESULT_PLEASE_DELETE_ME
     // epilogue and blr
@@ -56,6 +56,6 @@ _ShouldntSpawn:
     addi sp, sp, 0x20
     BACKDOOR_BLR
 _ShouldSpawn:
-    ASM_RESTORE_CONTEXT_FROM_STACK
+    kmRestoreContext
     blr  // needed because we used nofralloc at the start -- also, Kamek will replace this with a branch to the target return address
 };

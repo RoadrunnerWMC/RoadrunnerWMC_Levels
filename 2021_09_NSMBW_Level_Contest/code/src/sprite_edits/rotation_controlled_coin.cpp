@@ -23,18 +23,10 @@
 // Rotation-controlled coin (253) hacks
 
 
-void RotationControlledCoin_ApplyDisplayAngleChange(dStageActor_c *this_) {
+// New setting in nybbles 5-8: initial angle
+kmSafeBranchDefCpp(0x809e5828, lwz r29, 0x44(sp)) {
+    kmUseReg(r28, this_, dStageActor_c *);
+
     s16 initialAngle = (this_->settings >> 16) & 0xffff;
     this_->rot.z += initialAngle;
-};
-
-
-kmBranchDefAsm(0x809e5828, 0x809e582c) {
-    nofralloc  // don't auto-generate a prologue
-    lwz r29, 0x44(sp)  // (original instruction)
-    ASM_DUMP_CONTEXT_TO_STACK
-    mr r3, r28
-    bl RotationControlledCoin_ApplyDisplayAngleChange
-    ASM_RESTORE_CONTEXT_FROM_STACK
-    blr  // needed because we used nofralloc at the start -- also, Kamek will replace this with a branch to the target return address
 };

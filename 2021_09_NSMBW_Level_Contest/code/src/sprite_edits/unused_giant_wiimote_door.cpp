@@ -100,7 +100,9 @@ kmCallDefAsm(0x808959a0) {
 
 // settings & 0xf0000000: z-order (higher values = farther behind)
 // (0 = retail default, in front of Mario; 1+ = same values as for regular doors)
-void WiimoteDoor_SetZOrder(daRemoDoorImproved_c *this_) {
+kmSafeBranchDefCpp(0x80895a5c) {
+    kmUseReg(r30, this_, daRemoDoorImproved_c *);
+
     int zorder_int = (this_->settings >> 28) & 0xf;
     if (zorder_int == 0) {
         this_->pos.z = 5500.0;
@@ -108,30 +110,19 @@ void WiimoteDoor_SetZOrder(daRemoDoorImproved_c *this_) {
         this_->pos.z = 32.0f - 100.0f * zorder_int;
     }
 };
-kmBranchDefAsm(0x80895a5c, 0x80895a60) {
-    nofralloc  // don't auto-generate a prologue
-    ASM_DUMP_CONTEXT_TO_STACK
-    mr r3, r30
-    bl WiimoteDoor_SetZOrder
-    ASM_RESTORE_CONTEXT_FROM_STACK
-    blr  // needed because we used nofralloc at the start -- also, Kamek will replace this with a branch to the target return address
-};
 
 // Bugfix: door will now spawn in the correct state depending on the initial remote tilt
-void WiimoteDoor_SetInitialState(daRemoDoorImproved_c *this_) {
+kmSafeBranchDefCpp(0x80895a70) {
+    kmUseReg(r30, this_, daRemoDoorImproved_c *);
+
     if (GetTiltStateForRemoDoor() == TILT_STATE_RIGHT)
         this_->acState.setState(&daRemoDoor_c::StateID_CloseReady);
     else
         this_->acState.setState(&daRemoDoor_c::StateID_OpenReady);
 };
-kmBranchDefAsm(0x80895a70, 0x80895a80) {
-    nofralloc  // don't auto-generate a prologue
-    ASM_DUMP_CONTEXT_TO_STACK
-    mr r3, r30
-    bl WiimoteDoor_SetInitialState
-    ASM_RESTORE_CONTEXT_FROM_STACK
-    blr  // needed because we used nofralloc at the start -- also, Kamek will replace this with a branch to the target return address
-};
+kmWrite32(0x80895a74, 0x60000000);  // nop
+kmWrite32(0x80895a78, 0x60000000);  // nop
+kmWrite32(0x80895a7c, 0x60000000);  // nop
 
 // Allocate extra space for new things
 kmWrite32(0x808958e8, 0x38600000 | sizeof(daRemoDoorImproved_c));  // li r3, (size)
@@ -155,18 +146,11 @@ void WiimoteDoor_SetUpPhysics(daRemoDoorImproved_c *this_) {
     }
 };
 
-void WiimoteDoor_AppendToCreate(daRemoDoorImproved_c *this_) {
+kmSafeBranchDefCpp(0x80895a84, li r3, 1) {
+    kmUseReg(r30, this_, daRemoDoorImproved_c *);
+
     WiimoteDoor_SetUpPhysics(this_);
     this_->posManagedActorId = 0;
-};
-kmBranchDefAsm(0x80895a84, 0x80895a88) {
-    nofralloc  // don't auto-generate a prologue
-    ASM_DUMP_CONTEXT_TO_STACK
-    mr r3, r30
-    bl WiimoteDoor_AppendToCreate
-    ASM_RESTORE_CONTEXT_FROM_STACK
-    li r3, 1  // (original instruction)
-    blr  // needed because we used nofralloc at the start -- also, Kamek will replace this with a branch to the target return address
 };
 
 // Update Physics in Execute
@@ -213,13 +197,15 @@ void WiimoteDoor_Execute(daRemoDoorImproved_c *this_) {
         }
     }
 };
-kmBranchDefAsm(0x80895ab8, 0x80895acc) {
-    nofralloc  // don't auto-generate a prologue
-    ASM_DUMP_CONTEXT_TO_STACK
-    bl WiimoteDoor_Execute
-    ASM_RESTORE_CONTEXT_FROM_STACK
-    blr  // needed because we used nofralloc at the start -- also, Kamek will replace this with a branch to the target return address
+kmSafeBranchDefCpp(0x80895ab8, lwz r29, 0x44(sp)) {
+    kmUseReg(r3, this_, daRemoDoorImproved_c *);
+
+    WiimoteDoor_Execute(this_);
 };
+kmWrite32(0x80895abc, 0x60000000);  // nop
+kmWrite32(0x80895ac0, 0x60000000);  // nop
+kmWrite32(0x80895ac4, 0x60000000);  // nop
+kmWrite32(0x80895ac8, 0x60000000);  // nop
 
 // Delete Physics
 int WiimoteDoor_Delete(daRemoDoorImproved_c *this_) {
