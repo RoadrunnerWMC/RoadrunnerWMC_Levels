@@ -13,11 +13,11 @@ Click below to watch a video of the level on YouTube:
 * [Chickensaver (Bahlph#0486)](https://github.com/Bahlph) -- debugging help
 * [hus](https://www.youtube.com/channel/UCROjh4jG2rsZ0PD0gn2A79w) -- helping with modeling
 * Jimbo Slim -- adding bevel effects to door model textures, playtesting
-* ThunderVolt (Kiwi) -- playtesting
 * Meatball132 -- bouncing ideas off of, playtesting
 * ([myself](https://github.com/RoadrunnerWMC), of course)
 * [Shibboleet](https://github.com/shibbo) -- debugging help
 * [Skawo](https://www.youtube.com/c/Skawo) -- bouncing ideas off of, testing/debugging on hardware, playtesting
+* ThunderVolt (Kiwi) -- playtesting
 
 ## Build instructions
 
